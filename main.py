@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from src.issue_tracker.api.router import router
+from issue_tracker.api.router import router
+from issue_tracker.models import Issue, User  # noqa: F401
+
 
 
 app = FastAPI()

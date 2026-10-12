@@ -1,6 +1,6 @@
 from fastapi import HTTPException, APIRouter,  status
-from src.issue_tracker.schemas.issues import  IssueResponse
-from src.issue_tracker.services.issues import get_all_issues, get_issue_by_id
+from issue_tracker.schemas.issues import  IssueResponse
+from issue_tracker.services.issues import get_all_issues, get_issue_by_id
 
 router = APIRouter()
 
