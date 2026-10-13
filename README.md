@@ -149,9 +149,17 @@ uv run alembic upgrade head
 uv run uvicorn issue_tracker:app --app-dir src --reload
 ```
 
-The API is available at `http://127.0.0.1:8000`. Interactive Swagger UI is at
-`http://127.0.0.1:8000/docs`; the OpenAPI schema is at
-`http://127.0.0.1:8000/openapi.json`.
+## Hosted API
+
+The deployed API base URL is [https://issue-tracker-tvge.onrender.com](https://issue-tracker-tvge.onrender.com).
+Open the interactive Swagger UI at
+[https://issue-tracker-tvge.onrender.com/docs](https://issue-tracker-tvge.onrender.com/docs).
+The OpenAPI schema is available at
+[https://issue-tracker-tvge.onrender.com/openapi.json](https://issue-tracker-tvge.onrender.com/openapi.json).
+
+For local development, the API is available at `http://127.0.0.1:8000`,
+interactive Swagger UI at `http://127.0.0.1:8000/docs`, and the OpenAPI schema
+at `http://127.0.0.1:8000/openapi.json`.
 
 ## API overview
 
@@ -231,21 +239,4 @@ Issue updates accept any subset of `title`, `description`, `status`, and
 requires authentication, but the current implementation does not filter issue
 lists or individual issue retrieval by owner.
 
-## Database migrations
 
-Alembic migration files are in `alembic/versions/`. Autogeneration depends on
-the SQLAlchemy models being imported and assigned to `target_metadata` in
-`alembic/env.py`. Always review generated migration scripts before applying
-them, especially for destructive schema changes.
-
-## Current scope and production notes
-
-- This project currently provides an API; it does not include a web frontend.
-- Login sets the authentication cookie, but a logout endpoint is not currently
-  implemented.
-- CORS currently allows all origins. Restrict allowed origins for deployment.
-- The current database session setup passes a SQLite-specific connection
-  argument, so switching database engines requires updating the engine setup as
-  well as `DATABASE_URL`.
-- Use a unique, private `JWT_SECRET_KEY`, HTTPS, and secure cookie settings in
-  production.
