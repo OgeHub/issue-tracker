@@ -40,3 +40,10 @@ class UserResponse(BaseModel):
 
     message: str
     data: Optional[Union[UserOut, list[UserOut]]] = None
+    
+class UserLogin(BaseModel):
+    email: EmailStr = Field(max_length=120, description="The email address of the user")
+    password: str = Field(min_length=8, max_length=200, description="The password for the user account")
+    
+class UserLoginResponse(BaseModel):
+    message: str

@@ -1,12 +1,13 @@
 import uuid
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, Depends, HTTPException
 
+from issue_tracker.api.deps import get_current_user
 from issue_tracker.database.session import DbSession
 from issue_tracker.schemas.users import UserResponse
 from issue_tracker.services.users import get_user_by_id, get_users
 
-router = APIRouter()
+router = APIRouter(dependencies=[Depends(get_current_user)])
 
 
 @router.get("/", response_model=UserResponse)
